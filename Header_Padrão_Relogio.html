@@ -1,0 +1,193 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500;700&display=swap"
+  rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+  /* --- 1. CONFIGURAÇÃO DO FUNDO DO DASHBOARD (IMPORTANTE) --- */
+  :root {
+    //--dashboard-bg-color: #282A36;
+  }
+
+  /* Força o background no corpo do Grafana para sumir com o cinza padrão */
+  html,
+  body {
+    background-color: #1e1e38 !important;
+    //background-color: #0b0b10 !important;
+    /* Fallback */
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* --- 2. HEADER CONTAINER --- */
+  .header-container {
+    background-color: rgba(0, 0, 0, 0.2);
+    //background-image: #1e1e38 !important;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1.5rem;
+    //border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(204, 204, 220, 0.12);
+    /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); */
+  }
+
+  /* --- 3. SOBRESCRITAS GLOBAIS DO GRAFANA (DO SEU EXEMPLO) --- */
+  /* Aplica sombra e bordas arredondadas em TODOS os painéis do dashboard */
+  .css-itdw1b-panel-container,
+  .css-1ijfwvk-panel-container,
+  .css-7mshyc-panel-container,
+  .css-2qng6u-panel-container,
+  .css-18yh62t-panel-container {
+    background: rgba(0, 0, 0, 0.2);
+    /* Fundo dos painéis */
+    border-radius: 1.5rem;
+    //  border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(204, 204, 220, 0.12);
+
+  }
+
+  .css-1978mzo-canvas-content {
+    //background: #1e1e38;
+    /* Fundo dos painéis */
+  }
+
+  /* Seção da Esquerda (Logo) */
+  .header-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    height: 3.5rem;
+    width: auto;
+    display: block;
+  }
+
+  /* Seção Central (Títulos) */
+  .header-center {
+    flex: 2;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* Mais negrito */
+    margin: 0;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin: 6px 0 0 0;
+    color: #FFF;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Seção da Direita (Relógio) */
+  .header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* --- ALTERAÇÃO AQUI: ADICIONADO BACKGROUND AO RELÓGIO --- */
+  #clock {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #e0e0e0;
+
+    /* Novo estilo de background */
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px 16px;
+    border-radius: 2rem;
+    border: 1px solid rgba(204, 204, 220, 0.12);
+  }
+
+  /* --- CLASSES EXTRAS DO SEU EXEMPLO (MANTIDAS) --- */
+  .css-18o2w4z {
+    font-size: 10rem;
+    color: white;
+  }
+
+  .flot-temp-elem {
+    color: white !important;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400 !important;
+  }
+
+  .css-t12fgu {
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+  }
+
+  /* Tabelas */
+  .ReactTable .rt-thead .rt-resizable-header-content {
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .ReactTable .rt-tr {
+    color: #ddd;
+    font-size: 1rem;
+  }
+
+  .css-1kfgvg7-thead {
+    background: linear-gradient(180deg, #0094FF 0%, #005BB5 100%);
+    padding: 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+</style>
+
+<div class="header-container">
+  <div class="header-left">
+    <img src="" alt="Flowbix Logo" class="logo"> 
+  </div>
+  <div class="header-center">
+    <h1 class="title">EXEMPLO
+    </h1>
+    <p class="subtitle">EXEMPLO</p>
+  </div>
+  <div class="header-right">
+    <div id="clock">--:--:--</div>
+  </div>
+</div>
+
+<script>
+  // --- Lógica do Relógio ---
+    if (!window.grafanaHeaderClock) {
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            if (clockElement) {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+        }
+        window.grafanaHeaderClock = setInterval(updateClock, 1000);
+        updateClock();
+    }
+</script>
