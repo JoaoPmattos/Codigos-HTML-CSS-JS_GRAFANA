@@ -1,0 +1,156 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link
+  href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Roboto+Mono:wght@500;700&display=swap"
+  rel="stylesheet">
+
+<div id="neon-topology-panel">
+  <div class="bg-grid"></div>
+
+  <div id="top-toolbar">
+    <button class="toolbar-btn" onclick="addNodePreset('router')"><i class="fa fa-route"></i> Roteador</button>
+    <button class="toolbar-btn" onclick="addNodePreset('switch')"><i class="fa fa-network-wired"></i> Switch</button>
+    <button class="toolbar-btn" onclick="addNodePreset('server')"><i class="fa fa-server"></i> Servidor</button>
+    <button class="toolbar-btn" onclick="addNodePreset('cloud')"><i class="fa fa-cloud"></i> Nuvem</button>
+    <div class="toolbar-separator"></div>
+    <button class="toolbar-btn" onclick="addCustomNode()"><i class="fa fa-plus-circle"></i> Personalizado</button>
+    <div class="toolbar-separator"></div>
+    <button id="save-layout-btn" class="toolbar-btn" title="Gerar código"><i class="fa fa-save"></i> Gerar Código</button>
+  </div>
+
+  <svg id="topology-lines">
+    <defs>
+      <marker id="arrow-online" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"
+        markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="#39ff14" />
+      </marker>
+      <marker id="arrow-offline" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"
+        markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="#ff0000" />
+      </marker>
+      <marker id="arrow-default" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"
+        markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+      </marker>
+      <marker id="end-arrow-online" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"
+        markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L5,3 z" fill="#39ff14" />
+      </marker>
+      <marker id="end-arrow-offline" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"
+        markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L5,3 z" fill="#ff0000" />
+      </marker>
+      <marker id="end-arrow-default" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"
+        markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L5,3 z" fill="#334155" />
+      </marker>
+    </defs>
+  </svg>
+  <div id="breakpoints-layer"></div>
+  <div id="nodes-layer"></div>
+
+  <div id="connection-mode-msg" class="mode-message" style="display:none;">
+    <i class="fa fa-plug"></i> Selecione o destino... (ESC para cancelar)
+  </div>
+
+  <div id="context-menu" class="context-menu">
+    <ul>
+      <li id="ctx-bind-data"><i class="fa fa-database"></i> Vincular Dados (Ping)</li>
+      <li id="ctx-connect"><i class="fa fa-link"></i> Conectar...</li>
+      <li id="ctx-resize"><i class="fa fa-expand-arrows-alt"></i> Redimensionar</li>
+      <li id="ctx-icon"><i class="fa fa-icons"></i> Mudar Ícone</li>
+      <li id="ctx-rename"><i class="fa fa-edit"></i> Renomear</li>
+      <li id="ctx-duplicate"><i class="fa fa-clone"></i> Duplicar</li>
+      <li id="ctx-delete" class="delete-item"><i class="fa fa-trash"></i> Excluir Nó</li>
+    </ul>
+  </div>
+
+  <div id="line-context-menu" class="context-menu" style="width: 260px;">
+    <ul>
+      <li id="ctx-toggle-p2p"><i class="fa fa-exchange-alt"></i> Alternar Modo Ponto-a-Ponto</li>
+
+      <li class="line-prop-item">
+        <span><i class="fa fa-palette"></i> Cor da Linha</span>
+        <input type="color" id="ctx-line-color" class="line-color-picker" value="#334155">
+      </li>
+      <li class="line-prop-item">
+        <span><i class="fa fa-wind"></i> Animar Fluxo</span>
+        <label class="toggle-switch">
+              <input type="checkbox" id="ctx-line-animate">
+              <span class="slider"></span>
+          </label>
+      </li>
+      <hr style="border:0; border-top:1px solid #334155; margin:5px 0;">
+
+      <li id="ctx-bind-line-data"><i class="fa fa-long-arrow-alt-down"></i> Vincular Lado A (Origem)</li>
+      <li id="ctx-bind-line-data-sec"><i class="fa fa-long-arrow-alt-up"></i> Vincular Lado B (Destino)</li>
+
+      <hr style="border:0; border-top:1px solid #334155; margin:5px 0;">
+
+      <li id="ctx-add-breakpoint"><i class="fa fa-plus-circle"></i> Adicionar Quebra</li>
+      <li id="ctx-delete-line" class="delete-item"><i class="fa fa-trash"></i> Excluir Conexão</li>
+    </ul>
+  </div>
+
+  <div id="breakpoint-context-menu" class="context-menu">
+    <ul>
+      <li id="ctx-remove-breakpoint" class="delete-item"><i class="fa fa-eraser"></i> Remover Ponto</li>
+    </ul>
+  </div>
+
+  <div id="data-modal" class="modal-hidden">
+    <div class="modal-content data-picker-content">
+      <h3>Selecione a Métrica (Ping)</h3>
+      <input type="text" id="data-search-input" class="search-input" placeholder="🔎 Pesquisar host ou item...">
+      <div class="data-list-header">
+        <span>Nome do Host / Item</span>
+        <span>Valor Atual</span>
+      </div>
+      <div id="data-list" class="data-list"></div>
+      <div class="modal-actions">
+        <button id="close-data-modal-btn">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div id="connection-details-modal" class="modal-hidden">
+    <div class="modal-content" style="width: 400px; text-align: center;">
+      <h3>Detalhes da Conexão</h3>
+
+      <div id="conn-route" style="color: #94a3b8; font-size: 12px; margin-bottom: 15px;"></div>
+
+      <div style="font-size: 11px; color: #64748b; text-transform: uppercase; margin-bottom: 5px;">Item Monitorado</div>
+      <div id="conn-metric-name"
+        style="color: #fff; font-family: 'Roboto Mono'; font-size: 13px; margin-bottom: 20px; word-break: break-all;">
+      </div>
+
+      <div style="font-size: 11px; color: #64748b; text-transform: uppercase; margin-bottom: 5px;">Valor Atual</div>
+      <div id="conn-metric-value"
+        style="font-size: 32px; font-weight: bold; font-family: 'Rajdhani'; margin-bottom: 20px;"></div>
+
+      <div class="modal-actions" style="justify-content: center;">
+        <button id="close-conn-details-btn">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="icon-modal" class="modal-hidden">
+    <div class="modal-content icon-picker-content">
+      <h3>Selecione um Ícone</h3>
+      <div id="icon-grid" class="icon-grid"></div>
+      <div class="modal-actions"><button id="close-icon-modal-btn">Cancelar</button></div>
+    </div>
+  </div>
+
+  <div id="export-modal" class="modal-hidden">
+    <div class="modal-content">
+      <h3>Posições Atualizadas</h3>
+      <p>Copie o código abaixo e substitua as variáveis <b>let nodes</b> e <b>let links</b>:</p>
+      <textarea id="export-area" readonly></textarea>
+      <div class="modal-actions">
+        <button id="copy-btn"><i class="fa fa-copy"></i> Copiar</button>
+        <button id="close-modal-btn">Fechar</button>
+      </div>
+    </div>
+  </div>
+  <div id="hover-tooltip" class="hover-tooltip" style="display: none;"></div>
+  <div id="labels-layer"></div>
+</div>
