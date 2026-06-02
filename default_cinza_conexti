@@ -1,0 +1,532 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap"
+  rel="stylesheet">
+
+<style>
+  /* --- ESTILO GLOBAL PARA O FUNDO DO DASHBOARD --- */
+  :root {
+    --dashboard-bg-color: #282A36;
+  }
+
+  html,
+  body {
+    /* Background radial do Código 2 */
+    background-image: radial-gradient(circle, #3a3f44 0%, #1f2124 100%) !important;
+
+    font-family: 'Roboto', sans-serif;
+  }
+
+  /* --- ESTILOS DO PAINEL DE HEADER --- */
+  .header-container {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 12px 32px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2.5rem;
+    /* NOVO: Arredondamento para o header */
+    border: 1px solid rgba(204, 204, 220, 0.12);
+
+  }
+
+  /* --- REGRA ADICIONADA PARA APLICAR SOMBRA EM TODOS OS PAINÉIS --- */
+  /* NOVO: Aplica o efeito de sombra em todos os containers de painel e no header */
+  .css-itdw1b-panel-container,
+  .css-1ijfwvk-panel-container,
+  .css-7mshyc-panel-container,
+  .css-2qng6u-panel-container,
+  .css-18yh62t-panel-container,
+  .header-container {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+
+  /* Seção da Esquerda (Logo) */
+  .header-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .logo {
+    height: 45px;
+    width: auto;
+    display: block;
+  }
+
+  .css-1kfgvg7-thead {
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #0094FF 0%, #005BB5 100%);
+    padding: 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  /* Seção Central (Títulos) */
+  .header-center {
+    flex: 2;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+    color: #FFFFFF;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 6px 0 0 0;
+    color: #e0e0e0;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+  }
+
+  /* Seção da Direita (Relógio e Ícones) */
+  .header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+  }
+
+  #clock {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .header-icon {
+    font-size: 20px;
+  }
+
+  /*PAINEL "NO DATA" DO GRAFANA*/
+
+  .css-18o2w4z {
+    font-size: 10rem;
+    color: white;
+  }
+
+  /*PAINEL "NO DATA" DO GRAFANA*/
+
+
+  /*GAUGE DO GRAFANA*/
+  .flot-temp-elem {
+    color: white !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+
+
+  }
+
+  /*GAUGE DO GRAFANA*/
+
+
+  /*PIE CHART DO GRAFANA*/
+  .css-t12fgu {
+    color: rgba(255, 255, 255, 1);
+    font-weight: 400 !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 1rem;
+  }
+
+  /*PIE CHART DO GRAFANA*/
+
+
+  /* TEXTO DO STAT, OU PAINEIS E TALS */
+  .css-1b3ssqr-panel-container {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.0rem;
+    color: white !important;
+  }
+
+  /* TEXTO DO STAT, OU PAINEIS E TALS */
+
+
+  /*ZABBIX PROBLEMS*/
+  .ReactTable .rt-thead.-header,
+  .panel-problems .ReactTable .rt-tr-group .rt-tr.-even {
+    border: none !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+
+  }
+
+  .ReactTable .rt-thead .rt-resizable-header-content {
+    color: white;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.3rem;
+
+  }
+
+  .ReactTable .rt-tr {
+    color: white;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.3rem;
+
+  }
+
+  .panel-problems .ReactTable .rt-tr .rt-td.custom-expander i {
+    color: white !important;
+  }
+
+  .ReactTable .-pagination .-btn {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.3rem;
+    border-radius: 1rem !important;
+  }
+
+  .ReactTable .-pagination .-btn[disabled] {
+    opacity: 1 !important;
+
+  }
+
+  .ReactTable .-pagination .-pageInfo {
+    color: white !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1.3rem !important;
+
+  }
+
+  .ReactTable .-pagination input,
+  .ReactTable .-pagination select {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 1rem !important;
+  }
+
+  .panel-problems .ReactTable .rt-tr-group {
+    border: none !important;
+
+  }
+
+  /*ZABBIX PROBLEMS*/
+
+  /* PAINEIS DO GRAFANA */
+  .css-1ijfwvk-panel-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 1.5rem;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+  }
+
+  /*FIM DA SESSÃO DOS PAINEIS DO GRAFANA */
+
+  /* INICIO DA SESSÃO DAS ROW */
+  .css-1d3xu67-Icon {
+    fill: white !important;
+  }
+
+  .css-6bn9eg {
+    background: rgba(0, 0, 0, 0.2);
+
+  }
+
+  .css-159dowq {
+    color: white;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem;
+
+  }
+
+  .dashboard-row__title {
+    color: white !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+  }
+
+  .dashboard-row__panel_count {
+    font-size: 1rem !important;
+  }
+
+  /* FIM DA SESSÃO DAS ROW */
+
+  /*PAINEL TEXT DO GRAFANA*/
+  .css-7mshyc-panel-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+
+  }
+
+  /*PAINEL TEXT DO GRAFANA*/
+
+  /*TITULO DE QUALQUER PAINEL DO GRAFANA */
+  .css-4sw7w0 {
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem;
+  }
+
+  .css-biljvk-panel-title {
+    background: rgba(0, 0, 0, 0.2);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 1rem;
+  }
+
+  /*TITULO DE QUALQUER PAINEL DO GRAFANA */
+
+
+
+  /*INICIO DA SESSÃO DOS TABLE DO GRAFANA */
+
+  .css-1kfgvg7-thead {
+    color: #FFFFFF;
+    background: linear-gradient(180deg, #0094FF 0%, #005BB5 100%);
+    padding: 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .css-119zpr0 {
+    font-family: "Bebas Neue", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase !important;
+  }
+
+  .css-1jj2cky-tableContentWrapper {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  .css-8fjwhi-row {
+    border: 1px solid rgba(204, 204, 220, 0.12);
+  }
+
+  .css-8fjwhi-row:last-child {
+    border-bottom: 1px solid rgba(204, 204, 220, 0.12);
+  }
+
+  .css-1jj2cky-tableContentWrapper {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+
+  .css-8fjwhi-row {
+    color: rgba(255, 255, 255, 1) !important;
+    font-family: "Bebas Neue", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    text-transform: uppercase !important;
+  }
+
+  /*FIM DA SESSÃO DO TABLE */
+
+  /*DIV PARA EDITAR PROPRIEDADES DO GEOMAPS */
+  .ol-viewport {
+    border-radius: 1rem !important;
+    border: 1px solid rgba(204, 204, 220, 0.25) !important;
+  }
+
+  /*DIV PARA EDITAR PROPRIEDADES DO GEOMAPS */
+
+
+
+
+  /*HEADER DA LEGEND DO TIME SERIES*/
+  .css-180sqb0,
+  .css-1l1pgpn {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  .css-180sqb0,
+  .css-1l1pgpn {
+    color: rgba(255, 255, 255, 1);
+  }
+
+
+  /*TEXTO DA LEGEND DO TIME SERIES*/
+
+  .css-7pp3mx-LegendLabel {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1rem;
+    color: white;
+  }
+
+  .css-14gwilc {
+    color: white !important;
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+
+  }
+
+  /*LINHA DE MAX, LAST E MEAN(TEXTO) DA LEGEND DO TIME SERIES*/
+  .css-s2uf1z,
+  .css-97ygya,
+  .css-pvcoap {
+    color: white !important;
+    font-family: "Bebas Neue", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+  }
+
+  /*ICONES DE COR DA LEGENDA DO TIME SERIES*/
+  .css-1aj5l6t {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /*FIM DA SESSÃO DA LEGEND DO TIME SERIES*/
+
+  .css-n39kqr-cellContainerOverflow {
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .css-2qng6u-panel-container {
+    background: rgba(0, 0, 0, 0.2);
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+  }
+
+  .css-11qjisw {
+    height: 100%;
+  }
+
+  .css-1i88p6p {
+    width: 100%;
+    margin: 0;
+    padding: 0rem 0rem 0rem 2rem;
+  }
+
+  .css-m0z7c1 {
+    height: 100%;
+    margin: 0;
+  }
+
+  /*INICIO DA SESSÃO BUSINESS VARIABLE*/
+  .css-1umzzhb-input-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    border: 0;
+    color: #FFFFFF;
+    border-radius: 2rem;
+    border: 1px solid rgba(204, 204, 220, 0.12);
+  }
+
+  /*TEXTO DO BUSINESS*/
+  .css-8nwx1l-singleValue {
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  /*HEADER LAYOUT*/
+  .css-mge25e label {
+    color: rgba(255, 255, 255, 1);
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2rem;
+    padding: 1rem;
+    border: 1px solid rgba(204, 204, 220, 0.12);
+  }
+
+  /*TEXTO QUANDO A VARIAVEL É NUMERO*/
+  .css-1pc1kg0-grafana-select-multi-value-container {
+    color: rgba(255, 255, 255, 1);
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0);
+  }
+
+  /*TEXTO "CHOOSE" DO BUSINESS VARIABLE*/
+  .css-1n8tjau-placeholder {
+    color: rgba(255, 255, 255, 1);
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  /*FIM DA SESSÃO BUSINESS VARIABLE*/
+
+
+  .dashboard-row--collapsed {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .css-18yh62t-panel-container {
+    border-radius: 1rem;
+    border: 1px solid white;
+    background-color: rgba(0, 14, 28, 1);
+    color: white;
+  }
+
+  canvas[data-zr-dom-id="zr_0"] {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+</style>
+
+<div class="header-container">
+  <div class="header-left">
+    <img src="" alt="Flowbix Logo" class="logo">
+  </div>
+  <div class="header-center">
+    <h1 class="title">Exemplo</h1>
+    <p class="subtitle">Monitoramento de Exemplo</p>
+  </div>
+  <div class="header-right">
+    <div id="clock">--:--:--</div>
+  </div>
+</div>
+
+<script>
+  // --- Lógica do Relógio ---
+    if (!window.grafanaHeaderClock) {
+        
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            
+            if (clockElement) {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+            }
+        }
+
+        window.grafanaHeaderClock = setInterval(updateClock, 1000);
+        
+        updateClock();
+    }
+</script>
