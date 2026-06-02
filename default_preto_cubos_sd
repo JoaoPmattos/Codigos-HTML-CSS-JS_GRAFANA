@@ -200,7 +200,7 @@
 
 <div class="header-container">
     <div class="header-left">
-        <img src="http://50.114.62.67:50021/public/img/grafana_icon.svg" alt="SD Logo" class="logo">
+        <img src="" alt="SD Logo" class="logo">
     </div>
     <div class="header-center">
         <h1 class="title">EXEMPLO</h1>
