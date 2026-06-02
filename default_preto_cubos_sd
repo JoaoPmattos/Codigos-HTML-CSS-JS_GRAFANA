@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap"
+    rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -7,18 +8,19 @@
     :root {
         --dashboard-bg-color: #282A36;
     }
-    
-    html, body {
+
+    html,
+    body {
         /* Cor de fundo base */
         background-color: #121920 !important;
-        
+
         /* CAMADA 1: Radial Gradient (Vinheta) para escurecer as bordas e dar foco
            CAMADA 2: O SVG Geométrico que você escolheu
         */
-        background-image: 
+        background-image:
             radial-gradient(circle at center, rgba(18, 25, 32, 0.4) 0%, #0d1217 100%),
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23161d24' fill-opacity='0.66'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.66'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E") !important;
-            
+
         background-attachment: fixed;
         background-size: cover, auto;
         font-family: 'Roboto', sans-serif;
@@ -26,7 +28,7 @@
 
     /* --- ESTILOS DO HEADER --- */
     .header-container {
-        background-color: transparent; 
+        background-color: rgba(0, 0, 0, 0.2);
         color: #ffffff;
         width: 100%;
         height: 100%;
@@ -35,9 +37,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-radius: 1rem;
+        border-radius: 1.5rem;
+        border: 1px solid rgba(204, 204, 220, 0.12);
+
     }
-    
+
     /* --- RESTAURAÇÃO DOS SEUS EFEITOS DE PAINEL --- */
     /* Aplica sombra em todos os containers listados e seletores genéricos */
     div[class*="-panel-container"],
@@ -65,14 +69,14 @@
     }
 
     /* --- SOLUÇÃO DA BORDA: FORÇA O RAIO DE 1REM E O FUNDO TRANSLÚCIDO NO CONTEÚDO --- */
-    div[class*="-panel-content"],
+    /* div[class*="-panel-content"],
     .css-kuoxoh-panel-content,
     .css-jv7tdc {
         background: rgba(0, 0, 0, 0.2) !important;
         background-color: rgba(0, 0, 0, 0.2) !important;
         border-radius: 1rem !important;
         overflow: hidden !important;
-    }
+    } */
 
     /* Remove a faixa escura/linha dos cabeçalhos dos painéis nativos */
     div[class*="-panel-header"],
@@ -83,21 +87,62 @@
     }
 
     /* Header Left/Center/Right */
-    .header-left { flex: 1; display: flex; justify-content: flex-start; }
-    .logo { height: 90px; width: auto; display: block; }
-    
-    .header-center { flex: 2; text-align: center; padding: 0 20px; }
-    .title { font-size: 28px; font-weight: 500; margin: 0; color: #FFFFFF; }
-    .subtitle { font-size: 15px; font-weight: 400; margin: 6px 0 0 0; color: #e0e0e0; opacity: 0.9; letter-spacing: 0.5px; }
-            
-    .header-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 24px; }
-    
+    .header-left {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        max-height: 50px;
+        /* AJUSTE DE TAMANHO DA LOGO */
+        width: auto;
+        display: block;
+    }
+
+    .header-center {
+        flex: 2;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: 500;
+        margin: 0;
+        color: #FFFFFF;
+    }
+
+    .subtitle {
+        font-size: 15px;
+        font-weight: 400;
+        margin: 6px 0 0 0;
+        color: #e0e0e0;
+        opacity: 0.9;
+        letter-spacing: 0.5px;
+    }
+
+    .header-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 24px;
+    }
+
     /* SEU RELÓGIO ORIGINAL RESTAURADO EXATAMENTE */
-    #clock { font-family: 'Roboto Mono', monospace; font-size: 24px; font-weight: 500; }
-    .header-icon { font-size: 20px; }
+    #clock {
+        font-family: 'Roboto Mono', monospace;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .header-icon {
+        font-size: 20px;
+    }
 
     /* --- CLASSES ESPECÍFICAS DO GRAFANA (SEUS ESTILOS ORIGINAIS) --- */
-    
+
     /* Títulos de Tabelas */
     .css-1kfgvg7-thead {
         color: #FFFFFF;
@@ -107,17 +152,32 @@
     }
 
     /* Painel "No Data" */
-    .css-18o2w4z { font-size: 10rem; color: white; }
+    .css-18o2w4z {
+        font-size: 10rem;
+        color: white;
+    }
 
     /* Gauge */
-    .flot-temp-elem { color: white !important; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; }
+    .flot-temp-elem {
+        color: white !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+    }
 
     /* Pie Chart */
-    .css-t12fgu { color: rgba(255, 255, 255, 1); font-weight: 400 !important; font-family: 'Bebas Neue', sans-serif !important; font-size: 1rem; }
+    .css-t12fgu {
+        color: rgba(255, 255, 255, 1);
+        font-weight: 400 !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-size: 1rem;
+    }
 
     /* Estilo Base dos Painéis (Stat, etc) */
-    .css-itdw1b-panel-container, div[class*="-panel-content"], .css-kuoxoh-panel-content, .css-jv7tdc {
-        font-family: 'Bebas Neue', sans-serif !important;
+    .css-itdw1b-panel-container,
+    div[class*="-panel-content"],
+    .css-kuoxoh-panel-content,
+    .css-jv7tdc {
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
         font-weight: 400 !important;
         font-size: 1.5rem;
         color: white !important;
@@ -125,71 +185,275 @@
 
     /* Zabbix Problems Table Styles */
     .ReactTable .rt-thead.-header,
-    .panel-problems .ReactTable .rt-tr-group .rt-tr.-even { border: none !important; background: rgba(0, 0, 0, 0.2) !important; }
-    .ReactTable .rt-thead .rt-resizable-header-content { color: white; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1.3rem; }
-    .ReactTable .rt-tr { color: white; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1.3rem; }
-    .panel-problems .ReactTable .rt-tr .rt-td.custom-expander i { color: white !important; }
-    .ReactTable .-pagination .-btn { background: rgba(0, 0, 0, 0.2) !important; color: white !important; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1.3rem; border-radius: 1rem !important; }
-    .ReactTable .-pagination .-btn[disabled] { opacity: 1 !important; }
-    .ReactTable .-pagination .-pageInfo { color: white !important; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1.3rem !important; }
-    .ReactTable .-pagination input, .ReactTable .-pagination select { color: white !important; background: rgba(0, 0, 0, 0.2) !important; border-radius: 1rem !important; }
-    .panel-problems .ReactTable .rt-tr-group { border: none !important; }
+    .panel-problems .ReactTable .rt-tr-group .rt-tr.-even {
+        border: none !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .ReactTable .rt-thead .rt-resizable-header-content {
+        color: white;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1.3rem;
+    }
+
+    .ReactTable .rt-tr {
+        color: white;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1.3rem;
+    }
+
+    .panel-problems .ReactTable .rt-tr .rt-td.custom-expander i {
+        color: white !important;
+    }
+
+    .ReactTable .-pagination .-btn {
+        background: rgba(0, 0, 0, 0.2) !important;
+        color: white !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1.3rem;
+        border-radius: 1rem !important;
+    }
+
+    .ReactTable .-pagination .-btn[disabled] {
+        opacity: 1 !important;
+    }
+
+    .ReactTable .-pagination .-pageInfo {
+        color: white !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1.3rem !important;
+    }
+
+    .ReactTable .-pagination input,
+    .ReactTable .-pagination select {
+        color: white !important;
+        background: rgba(0, 0, 0, 0.2) !important;
+        border-radius: 1rem !important;
+    }
+
+    .panel-problems .ReactTable .rt-tr-group {
+        border: none !important;
+    }
 
     /* Outros Painéis */
-    .css-1ijfwvk-panel-container {
+    .css-1ijfwvk-panel-container,
+    .css-s4mk8-panel-container {
         background: rgba(0, 0, 0, 0.2);
         border-radius: 1.5rem;
         color: white;
-        font-family: 'Bebas Neue', sans-serif !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
         font-weight: 400 !important;
     }
 
     /* Rows */
-    .css-1d3xu67-Icon { fill: white !important; }
-    .css-6bn9eg { background: rgba(0, 0, 0, 0.2); }
-    .css-159dowq { color: white; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1rem; }
-    .dashboard-row__title { color: white !important; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1rem !important; }
-    .dashboard-row__panel_count { font-size: 1rem !important; }
+    .css-1d3xu67-Icon {
+        fill: white !important;
+    }
+
+    .css-6bn9eg {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .css-159dowq {
+        color: white;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem;
+    }
+
+    .dashboard-row__title {
+        color: white !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem !important;
+    }
+
+    .dashboard-row__panel_count {
+        font-size: 1rem !important;
+    }
 
     /* Painel de Texto */
-    .css-7mshyc-panel-container { background: rgba(0, 0, 0, 0.2); border-radius: 1rem; }
+    .css-7mshyc-panel-container {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 1rem;
+    }
 
     /* Títulos de Painéis */
-    .css-4sw7w0 { color: rgba(255, 255, 255, 1); font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1rem; }
-    .css-biljvk-panel-title { background: rgba(0, 0, 0, 0.2); padding-left: 0.5rem; padding-right: 0.5rem; border-radius: 1rem; }
+    .css-4sw7w0 {
+        color: rgba(255, 255, 255, 1);
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem;
+    }
+
+    .css-biljvk-panel-title {
+        background: rgba(0, 0, 0, 0.2);
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        border-radius: 1rem;
+    }
 
     /* Tabela Grafana (Nativa) */
-    .css-119zpr0 { font-family: "Bebas Neue", sans-serif !important; font-weight: 400 !important; font-size: 1rem !important; text-transform: uppercase !important; }
-    .css-1jj2cky-tableContentWrapper { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1rem; text-transform: uppercase; }
-    .css-8fjwhi-row { border: 1px solid rgba(204, 204, 220, 0.12); color: rgba(255, 255, 255, 1) !important; font-family: "Bebas Neue", sans-serif !important; font-weight: 400 !important; font-size: 1rem !important; text-transform: uppercase !important; }
-    .css-8fjwhi-row:last-child { border-bottom: 1px solid rgba(204, 204, 220, 0.12); }
+    .css-119zpr0 {
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem !important;
+        text-transform: uppercase !important;
+    }
+
+    .css-1jj2cky-tableContentWrapper {
+        font-family: Inter, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .css-8fjwhi-row {
+        border: 1px solid rgba(204, 204, 220, 0.12);
+        color: rgba(255, 255, 255, 1) !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem !important;
+        text-transform: uppercase !important;
+    }
+
+    .css-8fjwhi-row:last-child {
+        border-bottom: 1px solid rgba(204, 204, 220, 0.12);
+    }
 
     /* Geomaps */
-    .ol-viewport { border-radius: 1rem !important; border: 1px solid rgba(204, 204, 220, 0.25) !important; }
+    .ol-viewport {
+        border-radius: 1rem !important;
+        border: 1px solid rgba(204, 204, 220, 0.25) !important;
+    }
 
     /* Time Series Legends */
-    .css-180sqb0, .css-1l1pgpn { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1rem; text-transform: uppercase; color: rgba(255, 255, 255, 1); }
-    .css-7pp3mx-LegendLabel { text-transform: uppercase; font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1rem; color: white; }
-    .css-14gwilc { color: white !important; font-family: 'Bebas Neue', sans-serif !important; font-weight: 400 !important; font-size: 1rem !important; }
-    .css-s2uf1z, .css-97ygya, .css-pvcoap { color: white !important; font-family: "Bebas Neue", sans-serif !important; font-weight: 400 !important; font-size: 1rem !important; }
-    .css-1aj5l6t { width: 1rem; height: 1rem; }
+    .css-180sqb0,
+    .css-1l1pgpn {
+        font-family: Inter, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 1);
+    }
+
+    .css-7pp3mx-LegendLabel {
+        text-transform: uppercase;
+        font-family: Inter, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        color: white;
+    }
+
+    .css-14gwilc {
+        color: white !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem !important;
+    }
+
+    .css-s2uf1z,
+    .css-97ygya,
+    .css-pvcoap {
+        color: white !important;
+        font-family: Inter, Helvetica, Arial, sans-serif !important;
+        font-weight: 400 !important;
+        font-size: 1rem !important;
+    }
+
+    .css-1aj5l6t {
+        width: 1rem;
+        height: 1rem;
+    }
 
     /* Outros containers */
-    .css-n39kqr-cellContainerOverflow { color: white; border-bottom: 1px solid rgba(255, 255, 255, 0.5); border-right: 1px solid rgba(255, 255, 255, 0.5); }
-    .css-11qjisw { height: 100%; }
-    .css-1i88p6p { width: 100%; margin: 0; padding: 0rem 0rem 0rem 2rem; }
-    .css-m0z7c1 { height: 100%; margin: 0; }
+    .css-n39kqr-cellContainerOverflow {
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        border-right: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .css-11qjisw {
+        height: 100%;
+    }
+
+    .css-1i88p6p {
+        width: 100%;
+        margin: 0;
+        padding: 0rem 0rem 0rem 2rem;
+    }
+
+    .css-m0z7c1 {
+        height: 100%;
+        margin: 0;
+    }
 
     /* Business Variable */
-    .css-1nmqu8c-input-wrapper, .css-1u25aak-input-wrapper { background: rgba(0, 0, 0, 0.2); width: 100%; height: 100%; border: 0; color: #FFFFFF; border-radius: 2rem; border: 1px solid rgba(204, 204, 220, 0.12); }
-    .css-8nwx1l-singleValue { color: #FFFFFF; text-transform: uppercase; }
-    .css-m0z7c1 label, .css-1mjywi9 label { color: rgba(255, 255, 255, 1); font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1rem; text-transform: uppercase; background: rgba(0, 0, 0, 0.2); border-radius: 2rem; padding: 1rem; border: 1px solid rgba(204, 204, 220, 0.12); }
-    .css-1pc1kg0-grafana-select-multi-value-container { color: rgba(255, 255, 255, 1); font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1rem; text-transform: uppercase; background: rgba(0, 0, 0, 0); }
-    .css-1n8tjau-placeholder { color: rgba(255, 255, 255, 1); font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1rem; text-transform: uppercase; }
+    .css-1nmqu8c-input-wrapper,
+    .css-1u25aak-input-wrapper {
+        background: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
+        border: 0;
+        color: #FFFFFF;
+        border-radius: 2rem;
+        border: 1px solid rgba(204, 204, 220, 0.12);
+    }
 
-    .dashboard-row--collapsed { background: rgba(0, 0, 0, 0.2); }
-    .css-18yh62t-panel-container { border-radius: 1rem; border: 1px solid white; background-color: rgba(0, 14, 28, 1); color: white; }
-    canvas[data-zr-dom-id="zr_0"] { border-radius: 1rem; overflow: hidden; }
+    .css-8nwx1l-singleValue {
+        color: #FFFFFF;
+        text-transform: uppercase;
+    }
+
+    .css-m0z7c1 label,
+    .css-1mjywi9 label {
+        color: rgba(255, 255, 255, 1);
+        font-family: Inter, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 2rem;
+        padding: 1rem;
+        border: 1px solid rgba(204, 204, 220, 0.12);
+    }
+
+    .css-1pc1kg0-grafana-select-multi-value-container {
+        color: rgba(255, 255, 255, 1);
+        font-family: Inter, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .css-1n8tjau-placeholder {
+        color: rgba(255, 255, 255, 1);
+        font-family: Inter, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .dashboard-row--collapsed {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .css-18yh62t-panel-container {
+        border-radius: 1rem;
+        border: 1px solid white;
+        background-color: rgba(0, 14, 28, 1);
+        color: white;
+    }
+
+    canvas[data-zr-dom-id="zr_0"] {
+        border-radius: 1rem;
+        overflow: hidden;
+    }
 
     .css-969jjt-panel-container {
         background: transparent;
@@ -200,7 +464,7 @@
 
 <div class="header-container">
     <div class="header-left">
-        <img src="" alt="SD Logo" class="logo">
+        <img src="https://storage.googleapis.com/flowbix-img/LogoFBX_noBck.png" alt="SD Logo" class="logo">
     </div>
     <div class="header-center">
         <h1 class="title">EXEMPLO</h1>
